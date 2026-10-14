@@ -2,7 +2,7 @@ name: BriefReady single admitted browser QA
 
 on:
   pull_request:
-    types: [opened]
+    types: [synchronize]
     branches: [main]
     paths:
       - '.github/workflows/briefready-browser-qa.yml'
@@ -31,8 +31,6 @@ jobs:
       # exact candidate review plus verified private billing/zero-overage gate.
       BRIEFREADY_QA_ADMISSION: ADMITTED_SINGLE_RUN_USD0
       BRIEFREADY_QA_SOURCE_HEAD: ${{ github.event.pull_request.head.sha }}
-      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/briefready-browsers
-      BRIEFREADY_QA_OUT: ${{ runner.temp }}/briefready-qa-evidence
     steps:
       - name: Require reviewed one-run and zero-new-spend admission
         shell: bash
@@ -50,8 +48,13 @@ jobs:
       - name: Install exact integrity-locked QA packages
         run: npm ci --prefix qa --ignore-scripts --no-audit --no-fund
       - name: Install only pinned Chromium in the standard GitHub runner
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/briefready-browsers
         run: ./qa/node_modules/.bin/playwright install --with-deps chromium
       - name: Exercise the real app once, sequentially
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/briefready-browsers
+          BRIEFREADY_QA_OUT: ${{ runner.temp }}/briefready-qa-evidence
         run: node qa/browser-qa.cjs
       - name: Preserve small private first-failure evidence
         if: ${{ always() && env.BRIEFREADY_QA_ADMISSION == 'ADMITTED_SINGLE_RUN_USD0' }}
