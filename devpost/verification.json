@@ -1,0 +1,33 @@
+{
+  "tested_at_utc": "2026-10-14T20:32:37.743586+00:00",
+  "commands": [
+    {
+      "command": "node --check dist/app.js",
+      "exit": 0
+    },
+    {
+      "command": "node --check dist/core.js",
+      "exit": 0
+    },
+    {
+      "command": "npm test",
+      "exit": 0,
+      "tests": 21,
+      "pass": 21,
+      "fail": 0
+    }
+  ],
+  "scope": "Pure domain behavior and static structure; no DOM/browser execution",
+  "browser_mobile390": "NOT_EXECUTED",
+  "browser_desktop1440": "NOT_EXECUTED",
+  "keyboard": "NOT_EXECUTED",
+  "reason": "SITES_MANAGED_LINUX_CONTAINER=1; control-browser skill unavailable in enabled skill inventory; Sites prohibits alternate preview/server/browser path. No browser or preview started.",
+  "curriculum": "Pinned official instructions installed and applied as adapted private planning/build; draft plans, learner interview, approval, hands-on review and learning activity not completed",
+  "publication": false,
+  "deployment": false,
+  "video_recorded": false,
+  "submission": false,
+  "model_calls": 0,
+  "new_paid_commitments": 0,
+  "cost_observed": "No billable provider API used; host session tool/model credits not exposed; not claimed free"
+}
