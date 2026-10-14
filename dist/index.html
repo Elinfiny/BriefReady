@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Turn a freelance brief into an editable, source-linked delivery worksheet. Offline and private to your browser.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>BriefReady — From brief to handoff</title><link rel="stylesheet" href="styles.css">
+  <script defer src="core.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to worksheet</a>
+<header class="top"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true">b.</span> BriefReady</a><span class="privacy"><span aria-hidden="true">●</span> Offline · no account</span></header>
+<main>
+  <section class="intro"><div><p class="eyebrow">THE FREELANCER'S DELIVERY DESK</p><h1>A clearer brief.<br>A calmer handoff.</h1><p class="lede">Turn the ask into something you can check, finish and deliver.</p></div><aside class="intro-note"><span class="note-number">01 → 03</span><p>Bring the brief.<br>Make the scope explicit.<br>Leave with a checklist.</p></aside></section>
+  <div id="notice" role="status" aria-live="polite">Your brief stays in this browser. Export JSON to keep a portable copy.</div>
+  <div class="desk">
+    <section class="brief-panel" aria-labelledby="brief-heading"><div class="section-heading"><span class="step">01</span><h2 id="brief-heading">Start with the brief</h2></div>
+      <form id="brief-form"><label for="project-title">Project name</label><input id="project-title" maxlength="200" placeholder="e.g. Studio launch kit" value="Untitled delivery">
+      <div class="label-line"><label for="brief">The client's ask</label><button type="button" class="text-button" id="example">Use a synthetic example</button></div>
+      <textarea id="brief" rows="12" maxlength="12000" placeholder="Deliverable: A one-page brand guide&#10;Accept: Include the approved palette and logo spacing&#10;Deliverable: Three social templates&#10;Accept: Export editable files and PNG previews" aria-describedby="brief-help"></textarea>
+      <p id="brief-help" class="help">One deliverable per line. Put <b>Accept:</b> lines underneath it to capture explicit requirements.</p>
+      <button type="submit" class="primary full">Draft my checklist <span aria-hidden="true">↗</span></button>
+      <p class="fine">Local drafting rules, no model calls. Review every item before using it with a client.</p></form>
+      <div class="file-tools"><h3>Pick up where you left off</h3><label class="secondary import-label" for="import-file">Import worksheet JSON</label><input type="file" id="import-file" accept=".json,application/json"><p class="help">Saved on this browser automatically. JSON moves it between devices. Files are unencrypted.</p></div>
+    </section>
+    <section id="workspace" class="workspace" tabindex="-1" aria-labelledby="worksheet-heading"><div class="workspace-top"><div class="section-heading"><span class="step">02</span><h2 id="worksheet-heading">Your delivery worksheet</h2></div><span id="readiness" class="badge">Not started</span></div>
+      <p id="summary" class="summary">A small plan you can actually finish.</p><div class="progress-track" aria-hidden="true"><div id="progress-bar"></div></div>
+      <section id="questions-box" hidden><h3>Clarify before you commit</h3><ul id="questions"></ul><p class="help">These are prompts to review, not a complete ambiguity audit.</p></section>
+      <div id="items"></div><button type="button" id="add-item" class="secondary" hidden>+ Add deliverable</button>
+      <div id="export-tools" class="export-tools" hidden><div><span class="eyebrow">03 · KEEP IT MOVING</span><h3>Take your handoff with you.</h3><p class="help">Export the current draft, including unfinished checks.</p></div><div class="export-buttons"><button type="button" id="export-md" class="primary">Export Markdown</button><button type="button" id="export-json" class="secondary">Save JSON</button></div></div>
+    </section>
+  </div>
+</main>
+<footer>Small scope. Clear expectations. Better delivery.<span>BriefReady · Private working draft</span></footer>
+<dialog id="replace-dialog" aria-labelledby="replace-heading"><h2 id="replace-heading">Replace this worksheet?</h2><p>Your current checklist and edits will be replaced. Save JSON first if you need to keep them.</p><div class="dialog-actions"><button id="replace-cancel" class="secondary">Keep current worksheet</button><button id="replace-confirm" class="primary">Replace worksheet</button></div></dialog>
+<noscript>This worksheet needs JavaScript enabled. It runs entirely on your device.</noscript>
+</body></html>

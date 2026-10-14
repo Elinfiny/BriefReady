@@ -1,6 +1,6 @@
 # BriefReady
 
-Private proof of concept: a brief becomes an editable, source-linked delivery worksheet. Current status: mechanically tested private candidate; real-browser QA and independent review are pending.
+Private proof of concept: a brief becomes an editable, source-linked delivery worksheet. Current status: mechanically tested private candidate; source and import independently verified, with real-browser QA pending.
 
 ## Run
 
@@ -42,4 +42,4 @@ All application code was written from an empty project folder during the contest
 
 Planning artifacts are `devpost/scope.md`, `devpost/prd.md`, `devpost/spec.md`. They remain draft: this private build followed explicit delegated execution instructions, without inventing learner interviews, displayed approvals, learning outcomes or a completed guided curriculum. Independent eligibility review must assess that adaptation before publication/submission. `devpost/learner-profile.md` is ignored and must not be published.
 
-No remote repository, public publication, deployment, registration or submission has been performed. A public repository and real short demonstration video remain required for entry. Application license: MIT; curriculum license retained separately.
+The imported source is in the private Elinfiny/BriefReady repository. Public publication, deployment, registration and submission have not been performed. A public repository and real short demonstration video remain required for entry. Application license: MIT; curriculum license retained separately.
