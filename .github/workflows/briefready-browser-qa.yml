@@ -1,0 +1,64 @@
+name: BriefReady single admitted browser QA
+
+on:
+  pull_request:
+    types: [opened]
+    branches: [main]
+    paths:
+      - '.github/workflows/briefready-browser-qa.yml'
+      - 'qa/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: briefready-single-browser-qa
+  cancel-in-progress: false
+
+jobs:
+  browser-qa:
+    if: >-
+      github.repository == 'Elinfiny/BriefReady' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'review/basics-v1-cloud-qa-once-20261015' &&
+      github.event.pull_request.base.sha == '5fe0320aede6a84f65976a90ccd564a446fc68c4' &&
+      github.event.pull_request.draft == false &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      # Deliberately inert candidate. Change only under a separately admitted
+      # exact candidate review plus verified private billing/zero-overage gate.
+      BRIEFREADY_QA_ADMISSION: ADMITTED_SINGLE_RUN_USD0
+      BRIEFREADY_QA_SOURCE_HEAD: ${{ github.event.pull_request.head.sha }}
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/briefready-browsers
+      BRIEFREADY_QA_OUT: ${{ runner.temp }}/briefready-qa-evidence
+    steps:
+      - name: Require reviewed one-run and zero-new-spend admission
+        shell: bash
+        run: |
+          test "$BRIEFREADY_QA_ADMISSION" = ADMITTED_SINGLE_RUN_USD0
+          test "$GITHUB_RUN_ATTEMPT" = 1
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: '22'
+      - name: Install exact integrity-locked QA packages
+        run: npm ci --prefix qa --ignore-scripts --no-audit --no-fund
+      - name: Install only pinned Chromium in the standard GitHub runner
+        run: ./qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Exercise the real app once, sequentially
+        run: node qa/browser-qa.cjs
+      - name: Preserve small private first-failure evidence
+        if: ${{ always() && env.BRIEFREADY_QA_ADMISSION == 'ADMITTED_SINGLE_RUN_USD0' }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: briefready-browser-qa-${{ github.run_id }}
+          path: ${{ runner.temp }}/briefready-qa-evidence/
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: warn
