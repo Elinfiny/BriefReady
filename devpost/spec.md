@@ -17,11 +17,11 @@ This is an executor choice within the minimum-technology/no-backend authorizatio
 
 ## Where It Runs and How Someone Tries It
 Open `dist/index.html` directly in a current desktop browser; all assets are local. File URL storage semantics vary: use a static origin for repeatable persistence. For ordinary local use: `python3 -m http.server 8000 --directory dist`, then open http://localhost:8000. Run `npm test` for core and static-structure checks. No install/build or keys required.
-In this managed execution container preview requires the supported Sites supervisor plus control-browser skill. That skill is not exposed; do not start an improvised preview server or claim visual QA. Local instructions describe the deliverable, not an observed browser session here.
+In the previously qualified Sites managed session, the required control-browser route was unavailable; this is not a claim that every browser surface is globally absent. Do not start an improvised preview server/browser in that environment. The separate standard GitHub Actions route executed actual Chromium functional/layout QA: [run 38653727493, attempt 1](https://github.com/Elinfiny/BriefReady/actions/runs/38653727493), 24/24 checks at 1440x900 and 390x844. Local setup instructions remain distinct from that observed CI session.
 Public repository and real video are both required for submission; deployment is optional. Neither is executed in this private slice.
 
 ## Look and Feel
-Implements `prd.md > Look and Feel`: responsive two-column grid with a <=800px single-column breakpoint, min-width:0 fields, 44px controls and visible focus. Browser screenshots and keyboard behavior still need actual browser QA at 390px/1440px.
+Implements `prd.md > Look and Feel`: responsive two-column grid with a <=800px single-column breakpoint, min-width:0 fields, 44px controls and visible focus. Actual keyboard/modal focus, responsive overflow, storage and import/export behavior passed in the recorded GitHub run above. No screenshots or video were produced; human visual inspection and learner hands-on review remain open.
 
 ## Components
 ### Core and validation
@@ -57,4 +57,4 @@ Zero runtime services/dependencies, zero new API/model/spend. Existing host tool
 Explicit acceptance prefixes and one-line deliverables keep offline transformation inspectable. This is not automatic semantic extraction and does not claim AI inference. One worksheet avoids accounts and synchronization.
 
 ## Decisions and Open Issues
-No learner uncertainty was collected; do not invent one. Validation-before-replacement will be demonstrated by rejection tests. Skill Pack interviews/sign-offs are adapted under Owner's explicit delegated private-execution instruction; docs stay draft. Independent review, visual/accessibility behavior in a real browser, actual video and eligibility remain open.
+No learner uncertainty was collected; do not invent one. Validation-before-replacement will be demonstrated by rejection tests. Skill Pack interviews/sign-offs are adapted under Owner's explicit delegated private-execution instruction; docs stay draft. Independent source/code review and automated browser functional/layout/keyboard checks are accepted. Human visual/accessibility assessment, learner participation, actual demo video and personal eligibility remain open; automated checks do not certify them.
