@@ -14,7 +14,7 @@ The application runs offline after its local files are available, using HTML, CS
 
 ## Setup and testing
 
-1. Obtain the repository once public access has been separately enabled and verified.
+1. Obtain the [public BriefReady repository](https://github.com/Elinfiny/BriefReady); public access was verified on 15 October 2026.
 2. Open `dist/index.html` in a current browser. No install, build, API key or account is required.
 3. For repeatable storage on a stable local origin, optionally run `python3 -m http.server 8000 --directory dist` and open `http://localhost:8000`.
 4. Load the synthetic example and draft the worksheet. Compare the cards with the source. Edit and check a criterion, then edit it again to see the old checkmark clear.
@@ -37,7 +37,7 @@ QA-only dependencies are `playwright` and `playwright-core` 1.64.1, Apache-2.0, 
 | Design | A coherent brief-to-verification-to-handoff journey | 24 browser checks across desktop/mobile; eight original demo scenes. Not universal accessibility certification. |
 | Potential Impact | Makes a specific freelancer handoff problem visible | Source excerpts, reset-on-edit verification and portable exports are demonstrated; adoption and measured impact remain untested. |
 | Innovation/Idea | Combines source-linked work, wording-sensitive verification and packaging in one offline worksheet | Core implementation and the original demo at 35–105 seconds; no absolute novelty or prior-art exclusion claim. |
-| Presentation | A real end-to-end demonstration with an English explanation of the audience, problem and value | 150.36-second original WebM plus prepared English captions sidecar; full runtime playback and eight independently sampled frames. No continuous human viewing claim. |
+| Presentation | A real end-to-end demonstration with an English explanation of the audience, problem and value | 150.36-second original WebM, now public on YouTube with a selectable eight-cue English captions track; full runtime playback and eight independently sampled frames. No continuous human viewing claim. |
 
 ## Recorded evidence
 
@@ -49,6 +49,6 @@ QA-only dependencies are `playwright` and `playwright-core` 1.64.1, Apache-2.0, 
 
 ## Public entry status
 
-The technical proof of concept and private demo are complete. Repository public visibility, the public YouTube/Vimeo video URL, required personal eligibility/rights/consent, registration and final submission remain pending. The technical evidence does not supply those attestations. Optional personal learning activities are not added as extra contest gates.
+The technical proof of concept and original demo are complete. The [repository](https://github.com/Elinfiny/BriefReady) and [YouTube demonstration](https://www.youtube.com/watch?v=5q7kFEJNwDM) are public, with selectable English captions, as verified on 15 October 2026. Required personal eligibility/rights/consent, registration and final submission remain pending. Future access through the judging period remains an obligation, not a proven future fact. The technical evidence does not supply those attestations. Optional personal learning activities are not added as extra contest gates.
 
 The [official rules](https://learn-ai-basics.devpost.com/rules) require public source with setup/license and a public English demonstration under three minutes; a separately hosted app is optional. Submission deadline: 26 October 2026, 21:00 UTC / 23:00 Europe/Bucharest. Keep free judging access until 30 October 2026, 21:00 UTC. No award outcome is promised.

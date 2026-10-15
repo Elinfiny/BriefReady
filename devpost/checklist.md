@@ -4,7 +4,7 @@ status: technical-review-complete
 ---
 # Build and Entry Checklist
 
-This proof of concept follows the retained Skill Pack planning structure. The product scope was explicitly approved on 15 October 2026. Technical evidence and pending publication/entry actions are separated below; no completed course, learner interview or personal hands-on activity is asserted.
+This proof of concept follows the retained Skill Pack planning structure. The product scope was explicitly approved on 15 October 2026. Technical evidence, public assets and pending entry actions are separated below; no completed course, learner interview or personal hands-on activity is asserted.
 
 ## Implemented slice
 
@@ -25,14 +25,14 @@ PRD references: `prd.md > The Core Journey`, `Features and Behavior`. Spec refer
 - [x] Independent sampled visual review of eight frames. This is not continuous human viewing or a universal accessibility assessment.
 - [x] English description, testing instructions and eight-cue English captions sidecar prepared. The sidecar is not embedded in the original video.
 
-## Pending public entry requirements
+## Public assets and pending entry requirements
 
-- [ ] Public repository access verified with source, setup and detectable MIT license.
-- [ ] Original demo publicly visible on YouTube or Vimeo; actual public URL verified.
+- [x] Public repository access verified on 15 October 2026 with source, setup and detectable MIT license: [Elinfiny/BriefReady](https://github.com/Elinfiny/BriefReady).
+- [x] Original demo publicly visible on YouTube; actual public URL and selectable eight-cue English captions verified on 15 October 2026: [BriefReady demonstration](https://www.youtube.com/watch?v=5q7kFEJNwDM).
 - [ ] Personal eligibility, rights, conflicts and required legal consent addressed without inferred attestations.
 - [ ] Registration and final required entry fields completed and submission receipt verified.
 
-No item above is checked merely because private preparation succeeded. Public access and video upload have not been executed. Course graduation, client interviews and personal learning exercises are not added as entry gates unless an actual required rule/form calls for them.
+Only the repository and video publication items above were completed and verified. Personal/legal attestations, registration and submission are still pending; future public availability is not guaranteed by this check. Course graduation, client interviews and personal learning exercises are not added as entry gates unless an actual required rule/form calls for them.
 
 ## Optional learning references
 
