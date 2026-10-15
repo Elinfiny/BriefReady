@@ -1,0 +1,88 @@
+# PRIVATE CANDIDATE. Future destination: .github/workflows/briefready-demo-capture.yml
+name: BriefReady one admitted real demo capture
+on:
+  pull_request:
+    types: [opened]
+    branches: [main]
+    paths: ['.github/workflows/briefready-demo-capture.yml', 'qa/capture-demo.cjs']
+permissions:
+  contents: read
+concurrency:
+  group: briefready-one-demo-capture
+  cancel-in-progress: false
+jobs:
+  capture:
+    if: >-
+      github.repository == 'Elinfiny/BriefReady' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.repo.private == true &&
+      github.head_ref == 'review/basics-v1-demo-capture-once-20261015' &&
+      github.event.pull_request.base.sha == '6e4c08463a6b125db309d57e57e5fcfa4fa9cc53' &&
+      github.event.pull_request.draft == false && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      BRIEFREADY_CAPTURE_ADMISSION: ADMITTED_SINGLE_CAPTURE_USD0
+      BRIEFREADY_CAPTURE_COST_EVIDENCE_SHA256: b37bbadfeb2105347197d3580b97b2e0f600cbfc566d810acf74e04d0e5c6e8f
+      BRIEFREADY_CAPTURE_SOURCE_HEAD: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Require exact reviewed single-run admission and fresh cost receipt
+        shell: bash
+        run: |
+          test "$BRIEFREADY_CAPTURE_ADMISSION" = ADMITTED_SINGLE_CAPTURE_USD0
+          test "$GITHUB_RUN_ATTEMPT" = 1
+          [[ "$BRIEFREADY_CAPTURE_COST_EVIDENCE_SHA256" =~ ^[a-f0-9]{64}$ ]]
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Require trusted distro decoder BEFORE installs or recording
+        shell: bash
+        run: |
+          test -x /usr/bin/ffprobe
+          dpkg-query -S /usr/bin/ffprobe | grep -q '^ffmpeg:'
+          test -z "$(dpkg --verify ffmpeg)"
+          /usr/bin/ffprobe -version
+      - name: Install exact accepted QA lock without scripts
+        run: npm ci --prefix qa --ignore-scripts --no-audit --no-fund
+      - name: Install only the pinned browser and its pinned recording encoder
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/briefready-capture-browsers
+        run: ./qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Record the real150-second presentation once
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/briefready-capture-browsers
+          BRIEFREADY_CAPTURE_OUT: ${{ runner.temp }}/briefready-capture-evidence
+        run: node qa/capture-demo.cjs
+      - name: Enforce artifact cap without altering original media
+        id: evidence
+        if: ${{ always() && env.BRIEFREADY_CAPTURE_ADMISSION == 'ADMITTED_SINGLE_CAPTURE_USD0' }}
+        env:
+          BRIEFREADY_CAPTURE_OUT: ${{ runner.temp }}/briefready-capture-evidence
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs'), path = require('node:path');
+          const root = process.env.BRIEFREADY_CAPTURE_OUT;
+          const scan = d => fs.readdirSync(d, {withFileTypes:true}).reduce((n,e) => {
+            const p = path.join(d,e.name); if(e.isSymbolicLink()) throw Error('Evidence symlink');
+            return n + (e.isDirectory() ? scan(p) : fs.statSync(p).size);
+          },0);
+          const bytes = fs.existsSync(root) ? scan(root) : 0;
+          const safe = bytes > 0 && bytes <= 25 * 1024 * 1024;
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `safe=${safe}\n`);
+          if(!safe) { console.error(`Artifact cap/no-evidence: ${bytes}; original retained runner-local, not truncated or uploaded; durable preservation NOT_PROVED`); process.exitCode=1; }
+          NODE
+      - name: Preserve original private WebM and observed evidence for one day
+        if: ${{ always() && steps.evidence.outputs.safe == 'true' && env.BRIEFREADY_CAPTURE_ADMISSION == 'ADMITTED_SINGLE_CAPTURE_USD0' }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: briefready-original-demo-${{ github.run_id }}
+          path: ${{ runner.temp }}/briefready-capture-evidence/
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
