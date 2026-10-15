@@ -1,6 +1,6 @@
 # BriefReady
 
-Private proof of concept: a brief becomes an editable, source-linked delivery worksheet. Current status: private candidate; source/import/merge independently reviewed and real-browser functional/layout QA passed 24/24. Application baseline: `570400c02e23766aec3b3062c37158bea1faff1a`; this is a source baseline, not a claim that later documentation commits share that SHA.
+A brief becomes an editable, source-linked delivery worksheet for freelance handoffs. Functional/layout QA passed 24/24, and a real 150.36-second demonstration was recorded and verified at 1440x900. The technical demonstration has been independently reviewed. Application baseline: `570400c02e23766aec3b3062c37158bea1faff1a`; the original video used `3ee6eebc1b21dfb6f0832a3914f3d0e03fbad097`. Later documentation commits do not change those evidence baselines. See [release notes and judging instructions](devpost/release.md).
 
 ## Run
 
@@ -40,8 +40,10 @@ The runtime makes no network calls. Browser storage and exported files are unenc
 
 All application code was written from an empty project folder during the contest period. No portfolio application code was reused. The MIT Devpost Learn Skill Pack is installed unchanged under `.agents/skills/`, pinned to `a0f065781873e8a7ed9a9a705a8dafa6a0810439`; provenance and its original license are in `devpost/`. The only incorporated pre-existing material is this curriculum, not application code.
 
-Planning artifacts are `devpost/scope.md`, `devpost/prd.md`, `devpost/spec.md`. They remain draft: this private build followed explicit delegated execution instructions, without inventing learner interviews, displayed approvals, learning outcomes or a completed guided curriculum. Independent eligibility review must assess that adaptation before publication/submission. `devpost/learner-profile.md` is ignored and must not be published.
+Planning artifacts are `devpost/scope.md`, `devpost/prd.md`, `devpost/spec.md`, structured using the retained Devpost Learn Skill Pack. They document this proof of concept and its scope. No course graduation, learner interview or personal hands-on activity is claimed or added as a separate entry requirement. Personal eligibility, rights and required form attestations remain distinct from technical validation. `devpost/learner-profile.md` is ignored and must not be published.
 
-On 15 October 2026 at 10:44:54 Europe/Bucharest, Marius explicitly approved the displayed product scope with “da”, recorded in the private project checkpoint. This is prospective scope approval only; it does not retrospectively approve every planning document or certify an interview, learning activity, hands-on review or personal eligibility.
+The product scope was explicitly approved on 15 October 2026. This confirms the intended features; it does not supply personal eligibility, legal consent or unperformed learning attestations.
 
-The imported source is in the private Elinfiny/BriefReady repository. Public publication, deployment, registration and submission have not been performed. A public repository and real short demonstration video remain required for entry. Application license: MIT; curriculum license retained separately.
+The original demonstration is preserved privately with its metadata: [run 38720132677, attempt 1](https://github.com/Elinfiny/BriefReady/actions/runs/38720132677). A separate non-recording Chromium context played the saved original to its end: 150.36 seconds, 1440x900, 3,759 decoded frames and no dropped frames or media error. Eight sampled frames were independently reviewed; this is not a claim of continuous human viewing. English captions are prepared as a separate sidecar, not embedded in the original.
+
+Repository public visibility, a public YouTube/Vimeo video URL, personal eligibility/required consent, registration and submission remain pending. A hosted deployment is optional. No public URL or completed entry is claimed. Application license: MIT; curriculum license retained separately.
